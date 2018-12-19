@@ -52,25 +52,25 @@ class Response extends \Heidelpay\Gateway\Controller\HgwAbstract
     /**
      * heidelpay Response constructor.
      *
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Sales\Model\OrderFactory $orderFactory
-     * @param \Magento\Framework\Url\Helper\Data $urlHelper
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Quote\Api\CartManagementInterface $cartManagement
-     * @param \Magento\Quote\Api\CartRepositoryInterface $quoteObject
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param HeidelpayHelper $paymentHelper
-     * @param OrderSender $orderSender
-     * @param InvoiceSender $invoiceSender
-     * @param OrderCommentSender $orderCommentSender
-     * @param \Magento\Framework\Encryption\Encryptor $encryptor
-     * @param \Magento\Customer\Model\Url $customerUrl
+     * @param \Magento\Framework\App\Action\Context           $context
+     * @param \Magento\Customer\Model\Session                 $customerSession
+     * @param \Magento\Checkout\Model\Session                 $checkoutSession
+     * @param \Magento\Sales\Model\OrderFactory               $orderFactory
+     * @param \Magento\Framework\Url\Helper\Data              $urlHelper
+     * @param \Psr\Log\LoggerInterface                        $logger
+     * @param \Magento\Quote\Api\CartManagementInterface      $cartManagement
+     * @param \Magento\Quote\Api\CartRepositoryInterface      $quoteObject
+     * @param \Magento\Framework\View\Result\PageFactory      $resultPageFactory
+     * @param HeidelpayHelper                                 $paymentHelper
+     * @param OrderSender                                     $orderSender
+     * @param InvoiceSender                                   $invoiceSender
+     * @param OrderCommentSender                              $orderCommentSender
+     * @param \Magento\Framework\Encryption\Encryptor         $encryptor
+     * @param \Magento\Customer\Model\Url                     $customerUrl
      * @param \Magento\Framework\Controller\Result\RawFactory $rawResultFactory
-     * @param QuoteRepository $quoteRepository
-     * @param PaymentInformationCollectionFactory $paymentInformationCollectionFactory,
-     * @param TransactionFactory $transactionFactory
+     * @param QuoteRepository                                 $quoteRepository
+     * @param PaymentInformationCollectionFactory             $paymentInformationCollectionFactory,
+     * @param TransactionFactory                              $transactionFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -119,6 +119,7 @@ class Response extends \Heidelpay\Gateway\Controller\HgwAbstract
 
     /**
      * @inheritdoc
+     *
      * @throws \Exception
      */
     public function execute()
