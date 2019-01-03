@@ -8,6 +8,7 @@ use Heidelpay\Gateway\Model\ResourceModel\PaymentInformation\CollectionFactory;
 use Heidelpay\Gateway\Model\TransactionFactory;
 use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpPaymentApi\Response as HeidelpayResponse;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
@@ -38,7 +39,9 @@ use Magento\Sales\Model\Order\Email\Sender\OrderSender;
  *
  * @package heidelpay\magento2\controllers
  */
-class Response extends \Heidelpay\Gateway\Controller\HgwAbstract implements CsrfAwareActionInterface
+class Response extends \Heidelpay\Gateway\Controller\HgwAbstract implements
+    CsrfAwareActionInterface,
+    HttpGetActionInterface
 {
     /** @var QuoteRepository */
     private $quoteRepository;
