@@ -4,19 +4,19 @@
  *
  * @license Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  * @copyright Copyright © 2016-present heidelpay GmbH. All rights reserved.
+ *
  * @link https://dev.heidelpay.de/magento2
+ *
  * @author David Owusu
  *
  * @package heidelpay
  * @subpackage magento2
  * @category magento2
  */
-
 namespace Heidelpay\Gateway\Controller\Index;
 
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Escaper;
@@ -25,10 +25,8 @@ use Magento\Framework\Phrase;
 use Magento\Payment\Gateway\Command\CommandException;
 use Psr\Log\LoggerInterface;
 use Heidelpay\PhpPaymentApi\Response as PaymentApiResponse;
-use Magento\Framework\App\Request\InvalidRequestException;
-use Magento\Framework\App\RequestInterface;
 
-class InitializePayment extends Action implements CsrfAwareActionInterface
+class InitializePayment extends Action
 {
     /**
      * @var JsonFactory
@@ -52,11 +50,12 @@ class InitializePayment extends Action implements CsrfAwareActionInterface
 
     /**
      * InitializePayment constructor.
-     * @param Context $context
-     * @param JsonFactory $resultJsonFactory
+     *
+     * @param Context         $context
+     * @param JsonFactory     $resultJsonFactory
      * @param LoggerInterface $logger
-     * @param Session $checkoutSession
-     * @param Escaper $escaper
+     * @param Session         $checkoutSession
+     * @param Escaper         $escaper
      */
     public function __construct(
         Context $context,
@@ -74,6 +73,7 @@ class InitializePayment extends Action implements CsrfAwareActionInterface
 
     /**
      * {@inheritDoc}
+     *
      * @throws \Magento\Framework\Exception\NotFoundException
      * @throws \RuntimeException
      * @throws CommandException
@@ -139,31 +139,5 @@ class InitializePayment extends Action implements CsrfAwareActionInterface
     private function getCheckoutSession()
     {
         return $this->checkoutSession;
-    }
-
-    /**
-     * Create exception in case CSRF validation failed.
-     * Return null if default exception will suffice.
-     *
-     * @param RequestInterface $request
-     *
-     * @return InvalidRequestException|null
-     */
-    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
-    {
-        return null;
-    }
-
-    /**
-     * Perform custom request validation.
-     * Return null if default validation is needed.
-     *
-     * @param RequestInterface $request
-     *
-     * @return bool|null
-     */
-    public function validateForCsrf(RequestInterface $request): ?bool
-    {
-        return true;
     }
 }
