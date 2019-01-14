@@ -1,9 +1,9 @@
 {
-  "name": "heidelpay/magento2",
-  "description": "This extension for Magento 2 provides a direct integration of the Heidelpay payment methods to your Magento 2 shop.",
+  "name": "heidelpay/magento2-version2.3-patch",
+  "description": "This extension for Magento 2 provides a direct integration of the Heidelpay payment methods to your Magento 2.3 shop. Please be aware this module will not be continued and is meant for urgent updates to Magento 2.3 only.",
   "require": {
-    "php": "~5.6.0|~7.0.0|~7.1.0|~7.2.0",
-    "magento/framework": "^100.0.0|^101.0.0|^102.0.0",
+    "php": "~7.1.0|~7.2.0",
+    "magento/framework": "^102.0.0",
     "magento/module-config": "*",
     "magento/module-store": "*",
     "magento/module-checkout": "*",
@@ -12,9 +12,9 @@
     "magento/module-customer": "*",
     "magento/module-payment": "*",
     "magento/module-backend": "*",
-    "heidelpay/php-message-code-mapper": "~1.0",
-    "heidelpay/php-basket-api": "~1.0",
-    "heidelpay/php-payment-api": "~1.4"
+    "heidelpay/php-message-code-mapper": "^1.0",
+    "heidelpay/php-basket-api": "^1.0",
+    "heidelpay/php-payment-api": "^1.4"
   },
   "require-dev": {
     "magento/marketplace-eqp": "^2.0",
@@ -46,6 +46,7 @@
   "keywords": [
     "magento",
     "magento2",
+    "magento2.3",
     "payment",
     "php",
     "payment-gateway"
