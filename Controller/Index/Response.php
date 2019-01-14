@@ -8,12 +8,15 @@ use Heidelpay\Gateway\Model\ResourceModel\PaymentInformation\CollectionFactory a
 use Heidelpay\Gateway\Model\TransactionFactory;
 use Heidelpay\PhpPaymentApi\Exceptions\HashVerificationException;
 use Heidelpay\PhpPaymentApi\Response as HeidelpayResponse;
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteRepository;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 use Magento\Sales\Model\Order\Email\Sender\OrderCommentSender;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
+use Magento\Framework\App\Request\InvalidRequestException;
 
 /**
  * Notification handler for the payment response
@@ -35,7 +38,7 @@ use Magento\Sales\Model\Order\Email\Sender\OrderSender;
  *
  * @package heidelpay\magento2\controllers
  */
-class Response extends HgwAbstract
+class Response extends HgwAbstract implements CsrfAwareActionInterface
 {
     /** @var QuoteRepository */
     private $quoteRepository;
@@ -300,5 +303,31 @@ class Response extends HgwAbstract
         // return the heidelpay response url as raw response instead of echoing it out.
         $result->setContents($redirectUrl);
         return $result;
+    }
+
+    /**
+     * Create exception in case CSRF validation failed.
+     * Return null if default exception will suffice.
+     *
+     * @param RequestInterface $request
+     *
+     * @return InvalidRequestException|null
+     */
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    /**
+     * Perform custom request validation.
+     * Return null if default validation is needed.
+     *
+     * @param RequestInterface $request
+     *
+     * @return bool|null
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }
