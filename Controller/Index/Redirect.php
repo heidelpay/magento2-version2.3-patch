@@ -2,6 +2,7 @@
 
 namespace Heidelpay\Gateway\Controller\Index;
 
+use Heidelpay\Gateway\Controller\HgwAbstract;
 use Heidelpay\Gateway\Helper\Payment as HeidelpayHelper;
 use Heidelpay\Gateway\Model\ResourceModel\Transaction\CollectionFactory;
 use Heidelpay\PhpPaymentApi\Response;
@@ -21,12 +22,14 @@ use Magento\Sales\Model\Order\Email\Sender\OrderSender;
  *
  * @license Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  * @copyright Copyright © 2016-present heidelpay GmbH. All rights reserved.
+ *
  * @link http://dev.heidelpay.com/magento2
+ *
  * @author Jens Richter
  *
  * @package heidelpay\magento2\controllers
  */
-class Redirect extends \Heidelpay\Gateway\Controller\HgwAbstract
+class Redirect extends HgwAbstract
 {
     /** @var Response The heidelpay response class */
     private $heidelpayResponse;
@@ -40,23 +43,23 @@ class Redirect extends \Heidelpay\Gateway\Controller\HgwAbstract
     /**
      * heidelpay Redirect constructor.
      *
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Sales\Model\OrderFactory $orderFactory
-     * @param \Magento\Framework\Url\Helper\Data $urlHelper
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Magento\Framework\App\Action\Context      $context
+     * @param \Magento\Customer\Model\Session            $customerSession
+     * @param \Magento\Checkout\Model\Session            $checkoutSession
+     * @param \Magento\Sales\Model\OrderFactory          $orderFactory
+     * @param \Magento\Framework\Url\Helper\Data         $urlHelper
+     * @param \Psr\Log\LoggerInterface                   $logger
      * @param \Magento\Quote\Api\CartManagementInterface $cartManagement
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteObject
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param HeidelpayHelper $paymentHelper
-     * @param Data $salesHelper
-     * @param OrderSender $orderSender
-     * @param InvoiceSender $invoiceSender
-     * @param OrderCommentSender $orderCommentSender
-     * @param \Magento\Framework\Encryption\Encryptor $encryptor
-     * @param \Magento\Customer\Model\Url $customerUrl
-     * @param CollectionFactory $transactionCollectionFactory
+     * @param HeidelpayHelper                            $paymentHelper
+     * @param Data                                       $salesHelper
+     * @param OrderSender                                $orderSender
+     * @param InvoiceSender                              $invoiceSender
+     * @param OrderCommentSender                         $orderCommentSender
+     * @param \Magento\Framework\Encryption\Encryptor    $encryptor
+     * @param \Magento\Customer\Model\Url                $customerUrl
+     * @param CollectionFactory                          $transactionCollectionFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -101,7 +104,10 @@ class Redirect extends \Heidelpay\Gateway\Controller\HgwAbstract
 
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     *
      * @throws \Heidelpay\MessageCodeMapper\Exceptions\MissingLocaleFileException
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function execute()
     {
