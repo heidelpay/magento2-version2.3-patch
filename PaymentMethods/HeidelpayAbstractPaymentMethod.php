@@ -10,6 +10,8 @@ use Heidelpay\Gateway\Model\ResourceModel\Transaction\CollectionFactory as Heide
 use Heidelpay\PhpPaymentApi\ParameterGroups\BasketParameterGroup;
 use Heidelpay\PhpPaymentApi\PaymentMethods\AbstractPaymentMethod;
 use Heidelpay\PhpPaymentApi\Response;
+use Magento\Payment\Model\Method\AbstractMethod;
+use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\TransactionInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Invoice;
@@ -25,14 +27,16 @@ use Magento\Store\Model\ScopeInterface;
  *
  * @license    Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  * @copyright  Copyright © 2016-present heidelpay GmbH. All rights reserved.
+ *
  * @link       http://dev.heidelpay.com/magento2
+ *
  * @author     Jens Richter
  *
  * @package    heidelpay
  * @subpackage magento2
  * @category   magento2
  */
-class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
+class HeidelpayAbstractPaymentMethod extends AbstractMethod
 {
     /**
      * PaymentCode
@@ -179,29 +183,31 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     /**
      * heidelpay Abstract Payment method constructor
      *
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory
-     * @param \Magento\Framework\Api\AttributeValueFactory $customAttributeFactory
-     * @param \Magento\Payment\Helper\Data $paymentData
-     * @param HgwMainConfigInterface $mainConfig
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Framework\UrlInterface $urlinterface
-     * @param \Magento\Framework\Encryption\Encryptor $encryptor
-     * @param \Magento\Payment\Model\Method\Logger $logger
-     * @param \Magento\Framework\Locale\ResolverInterface $localeResolver
-     * @param \Magento\Framework\App\ProductMetadataInterface $productMetadata
-     * @param \Magento\Framework\Module\ResourceInterface $moduleResource
-     * @param \Heidelpay\Gateway\Helper\Payment $paymentHelper
-     * @param \Heidelpay\Gateway\Helper\BasketHelper $basketHelper
-     * @param \Magento\Sales\Helper\Data $salesHelper
-     * @param PaymentInformationCollectionFactory $paymentInformationCollectionFactory
-     * @param \Heidelpay\Gateway\Model\TransactionFactory $transactionFactory
-     * @param HeidelpayTransactionCollectionFactory $transactionCollectionFactory
+     * @param \Magento\Framework\Model\Context                        $context
+     * @param \Magento\Framework\Registry                             $registry
+     * @param \Magento\Framework\Api\ExtensionAttributesFactory       $extensionFactory
+     * @param \Magento\Framework\Api\AttributeValueFactory            $customAttributeFactory
+     * @param \Magento\Payment\Helper\Data                            $paymentData
+     * @param HgwMainConfigInterface                                  $mainConfig
+     * @param \Magento\Framework\App\RequestInterface                 $request
+     * @param \Magento\Framework\UrlInterface                         $urlinterface
+     * @param \Magento\Framework\Encryption\Encryptor                 $encryptor
+     * @param \Magento\Payment\Model\Method\Logger                    $logger
+     * @param \Magento\Framework\Locale\ResolverInterface             $localeResolver
+     * @param \Magento\Framework\App\ProductMetadataInterface         $productMetadata
+     * @param \Magento\Framework\Module\ResourceInterface             $moduleResource
+     * @param \Heidelpay\Gateway\Helper\Payment                       $paymentHelper
+     * @param \Heidelpay\Gateway\Helper\BasketHelper                  $basketHelper
+     * @param \Magento\Sales\Helper\Data                              $salesHelper
+     * @param PaymentInformationCollectionFactory                     $paymentInformationCollectionFactory
+     * @param \Heidelpay\Gateway\Model\TransactionFactory             $transactionFactory
+     * @param HeidelpayTransactionCollectionFactory                   $transactionCollectionFactory
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
-     * @param HgwBasePaymentConfigInterface $paymentConfig
-     * @param array $data
+     * @param \Magento\Framework\Data\Collection\AbstractDb           $resourceCollection
+     * @param HgwBasePaymentConfigInterface                           $paymentConfig
+     * @param array                                                   $data
+     *
+     * @throws \RuntimeException
      */
     public function __construct(
         \Magento\Framework\Model\Context $context,
@@ -265,9 +271,9 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
      *
      * This function will return false, if the used payment method needs additional
      * customer payment data to pursue.
+     *
      * @return boolean
      */
-
     public function activeRedirect()
     {
         return true;
@@ -280,6 +286,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
      * @param integer $storeId
      *
      * @return string config value
+     *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getConfigData($field, $storeId = null)
@@ -463,6 +470,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
 
     /**
      * @param \Magento\Quote\Model\Quote $quote
+     *
      * @throws \Heidelpay\PhpBasketApi\Exception\InvalidBasketitemPositionException
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Exception
@@ -542,7 +550,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
      * @param $paymentMethod
      * @param $paymentType
      * @param string $source
-     * @param array $data
+     * @param array  $data
      */
     public function saveHeidelpayTransaction(Response $response, $paymentMethod, $paymentType, $source, array $data)
     {
@@ -594,7 +602,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     /**
      * extract customer information from magento order object
      *
-     * @param  \Magento\Quote\Api\Data\CartInterface $order object
+     * @param CartInterface $order object
      *
      * @return array customer information
      */
@@ -625,9 +633,10 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     }
 
     /**
+     * @param Order       $order
+     * @param string|null $message
      *
-     * @param \Magento\Sales\Model\Order $order
-     * @param string|null                $message
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function cancelledTransactionProcessing(&$order, $message = null)
     {
@@ -640,7 +649,6 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     }
 
     /**
-     *
      * @param array                      $data
      * @param \Magento\Sales\Model\Order $order
      * @param string|null                $message
@@ -658,7 +666,8 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
 
     /**
      * @param array $data
-     * @param \Magento\Sales\Model\Order $order
+     * @param Order $order
+     *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function processingTransactionProcessing($data, &$order)
@@ -711,6 +720,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
      * @param int $storeId
      *
      * @return string|null
+     *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getBookingMode($storeId = null)
@@ -772,7 +782,9 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     /**
      * Function to provide additional form data.
      * Should be overwritten by child classes if needed.
+     *
      * @param Response $response
+     *
      * @return array
      */
     public function prepareAdditionalFormData(Response $response)
@@ -781,7 +793,7 @@ class HeidelpayAbstractPaymentMethod extends \Magento\Payment\Model\Method\Abstr
     }
 
     /*
-     * Setup initialreques without customer data.
+     * Setup initial request without customer data.
      */
     public function setupInitialRequest()
     {

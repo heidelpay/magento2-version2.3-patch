@@ -15,7 +15,9 @@ use Heidelpay\PhpPaymentApi\Response;
  *
  * @license Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  * @copyright Copyright © 2016-present heidelpay GmbH. All rights reserved.
+ *
  * @link http://dev.heidelpay.com/magento2
+ *
  * @author David Owusu
  *
  * @package heidelpay
@@ -31,7 +33,6 @@ class HeidelpayIDealPaymentMethod extends HeidelpayAbstractPaymentMethod
     protected $_canAuthorize = true;
 
     protected $_isGateway = true;
-
 
     public function __construct(
         \Magento\Framework\Model\Context $context,
@@ -58,8 +59,7 @@ class HeidelpayIDealPaymentMethod extends HeidelpayAbstractPaymentMethod
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct(
             $context,
             $registry,
@@ -93,7 +93,7 @@ class HeidelpayIDealPaymentMethod extends HeidelpayAbstractPaymentMethod
      * @inheritdoc
      * Prepare necessary information for bank selection
      */
-    public function prepareAdditionalFormData(Response $response)
+    public function prepareAdditionalFormData(Response $response): array
     {
         $brands = $response->getConfig()->getBrands();
         $bankList = [];
