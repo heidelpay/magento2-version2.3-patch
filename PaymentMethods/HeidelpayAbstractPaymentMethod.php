@@ -516,7 +516,7 @@ class HeidelpayAbstractPaymentMethod extends AbstractMethod
         // add the module version to the heidelpay request
         $this->_heidelpayPaymentMethod->getRequest()->getCriterion()->set(
             'SHOPMODULE.VERSION',
-            'Heidelpay Gateway ' . $this->moduleResource->getDataVersion('Heidelpay_Gateway')
+            'Heidelpay Gateway - Magento 2.3 - patched ' . $this->moduleResource->getDataVersion('Heidelpay_Gateway')
         );
 
         // add a push url to the criterion object for future push responses from heidelpay
