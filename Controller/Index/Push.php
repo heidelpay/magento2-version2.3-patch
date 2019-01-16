@@ -2,7 +2,11 @@
 
 namespace Heidelpay\Gateway\Controller\Index;
 
+use Heidelpay\Gateway\Controller\HgwAbstract;
 use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\App\RequestInterface;
 use Magento\Sales\Model\Order\Email\Sender\InvoiceSender;
 use Magento\Sales\Model\Order\Email\Sender\OrderCommentSender;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
@@ -19,13 +23,14 @@ use Magento\Sales\Model\ResourceModel\Order\Collection;
  *
  * @license Use of this software requires acceptance of the License Agreement. See LICENSE file.
  * @copyright Copyright © 2016-present heidelpay GmbH. All rights reserved.
+ *
  * @link http://dev.heidelpay.com/magento2
  *
  * @author Stephano Vogel
  *
  * @package heidelpay\magento2\controllers
  */
-class Push extends \Heidelpay\Gateway\Controller\HgwAbstract
+class Push extends HgwAbstract implements CsrfAwareActionInterface
 {
     /** @var OrderRepository $orderRepository */
     private $orderRepository;
@@ -37,24 +42,24 @@ class Push extends \Heidelpay\Gateway\Controller\HgwAbstract
     private $searchCriteriaBuilder;
 
     /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Sales\Model\OrderFactory $orderFactory
-     * @param \Magento\Framework\Url\Helper\Data $urlHelper
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Magento\Framework\App\Action\Context      $context
+     * @param \Magento\Customer\Model\Session            $customerSession
+     * @param \Magento\Checkout\Model\Session            $checkoutSession
+     * @param \Magento\Sales\Model\OrderFactory          $orderFactory
+     * @param \Magento\Framework\Url\Helper\Data         $urlHelper
+     * @param \Psr\Log\LoggerInterface                   $logger
      * @param \Magento\Quote\Api\CartManagementInterface $cartManagement
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteObject
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Heidelpay\Gateway\Helper\Payment $paymentHelper
-     * @param OrderSender $orderSender
-     * @param InvoiceSender $invoiceSender
-     * @param OrderCommentSender $orderCommentSender
-     * @param \Magento\Framework\Encryption\Encryptor $encryptor
-     * @param \Magento\Customer\Model\Url $customerUrl
-     * @param OrderRepository $orderRepository
-     * @param \Heidelpay\PhpPaymentApi\Push $heidelpayPush
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Heidelpay\Gateway\Helper\Payment          $paymentHelper
+     * @param OrderSender                                $orderSender
+     * @param InvoiceSender                              $invoiceSender
+     * @param OrderCommentSender                         $orderCommentSender
+     * @param \Magento\Framework\Encryption\Encryptor    $encryptor
+     * @param \Magento\Customer\Model\Url                $customerUrl
+     * @param OrderRepository                            $orderRepository
+     * @param \Heidelpay\PhpPaymentApi\Push              $heidelpayPush
+     * @param SearchCriteriaBuilder                      $searchCriteriaBuilder
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -101,6 +106,7 @@ class Push extends \Heidelpay\Gateway\Controller\HgwAbstract
 
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
+     *
      * @throws \Heidelpay\PhpPaymentApi\Exceptions\XmlResponseParserException
      */
     public function execute()
@@ -205,5 +211,31 @@ class Push extends \Heidelpay\Gateway\Controller\HgwAbstract
                 $order->save();
             }
         }
+    }
+
+    /**
+     * Create exception in case CSRF validation failed.
+     * Return null if default exception will suffice.
+     *
+     * @param RequestInterface $request
+     *
+     * @return InvalidRequestException|null
+     */
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    /**
+     * Perform custom request validation.
+     * Return null if default validation is needed.
+     *
+     * @param RequestInterface $request
+     *
+     * @return bool|null
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }

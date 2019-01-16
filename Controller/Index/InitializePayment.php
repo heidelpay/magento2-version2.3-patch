@@ -17,6 +17,9 @@ namespace Heidelpay\Gateway\Controller\Index;
 
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Action;
+use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Escaper;
@@ -26,7 +29,7 @@ use Magento\Payment\Gateway\Command\CommandException;
 use Psr\Log\LoggerInterface;
 use Heidelpay\PhpPaymentApi\Response as PaymentApiResponse;
 
-class InitializePayment extends Action
+class InitializePayment extends Action implements CsrfAwareActionInterface
 {
     /**
      * @var JsonFactory
@@ -123,7 +126,7 @@ class InitializePayment extends Action
             return $result->setData($postData)->setHttpResponseCode(500);
         }
 
-        if ((!$response instanceof PaymentApiResponse || !$response->isSuccess())) {
+        if (!$response instanceof PaymentApiResponse || !$response->isSuccess()) {
             $this->logger->error('Heidelpay: Initial request did not succeed.');
             throw new \RuntimeException($this->escaper->escapeHtml($error_message));
         }
@@ -139,5 +142,31 @@ class InitializePayment extends Action
     private function getCheckoutSession()
     {
         return $this->checkoutSession;
+    }
+
+    /**
+     * Create exception in case CSRF validation failed.
+     * Return null if default exception will suffice.
+     *
+     * @param RequestInterface $request
+     *
+     * @return InvalidRequestException|null
+     */
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+
+    /**
+     * Perform custom request validation.
+     * Return null if default validation is needed.
+     *
+     * @param RequestInterface $request
+     *
+     * @return bool|null
+     */
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }

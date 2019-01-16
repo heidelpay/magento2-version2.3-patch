@@ -118,8 +118,6 @@ class Response extends HgwAbstract implements CsrfAwareActionInterface
         $this->quoteRepository = $quoteRepository;
         $this->paymentInformationCollectionFactory = $paymentInformationCollectionFactory;
         $this->transactionFactory = $transactionFactory;
-
-        $this->_logger->info('HEY: I have' . print_r(get_declared_interfaces(), true));
     }
 
     /**
