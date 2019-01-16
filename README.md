@@ -1,14 +1,13 @@
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2.svg?style=flat-square)](https://packagist.org/packages/heidelpay/magento2)
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/fb5b516ad21f44a591a58761a8c3ef42)](https://www.codacy.com/app/heidelpay/magento2/dashboard)
-[![PHP 5.6](https://img.shields.io/badge/php-5.6-blue.svg)](http://www.php.net)
-[![PHP 7.0](https://img.shields.io/badge/php-7.0-blue.svg)](http://www.php.net)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2-version2.3-patch?style=flat-square)](https://packagist.org/packages/heidelpay/magento2)
 [![PHP 7.1](https://img.shields.io/badge/php-7.1-blue.svg)](http://www.php.net)
+[![PHP 7.2](https://img.shields.io/badge/php-7.2-blue.svg)](http://www.php.net)
 
 ![Logo](http://dev.heidelpay.com/devHeidelpay_400_180.jpg)
 
 # Heidelpay payment extension for Magento2
 
-This extension for Magento 2 provides a direct integration of the Heidelpay payment methods to your Magento 2 shop. 
+This extension for Magento 2.3 provides a direct integration of the Heidelpay payment methods to your Magento 2.3 shop.
+> ATTENTION: Please note that this module will not be continued. This will allow for an Update to Magento 2.3, however it will not receive new Features.
 
 Currently supported payment methods are:
 * Credit Card
@@ -23,12 +22,12 @@ Currently supported payment methods are:
 * giropay
 * iDeal
 
-For more information please visit -http://dev.heidelpay.com/magento2/
+For more information please visit [our dev-page](http://dev.heidelpay.com/magento2).
 
 ## SYSTEM REQUIREMENTS
 
-This extension requires PHP 5.6 or PHP 7.0. 
-It also depends on the Heidelpay php-payment-api library, which will be installed along with the plugin.  
+This extension requires PHP 7.1 or PHP 7.2 as well as Magento 2.3.
+It also depends on the Heidelpay php-payment-api and the php-basket-api, which will be installed along with the plugin.  
 
 ## LICENSE
 
@@ -36,18 +35,16 @@ You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
 
 ## Release notes
 
-All versions greater than 16.10.17 are based on the heidelpay php-api. (https://github.com/heidelpay/php-api).
-All versions greater than 18.3.1 are based on the heidelpay php-payment-api. (https://github.com/heidelpay/php-payment-api). Please visit https://dev.heidelpay.com/PhpPaymentApi/ for the developer documentation.
-
+*   Bases on the [php-payment-api](https://github.com/heidelpay/php-payment-api). Please refer to the [developer documentation](https://dev.heidelpay.com/PhpPaymentApi/).
+*   Bases on the [php-basket-api](https://github.com/heidelpay/php-basket-api). Please refer to the [developer documentation](https://dev.heidelpay.com/php-composer-bundle/php-basket-api/).
 
 ## Installation
 
+### Install the heidelpay Magento 2.3 composer package
 
-### Install the heidelpay Magento 2 composer package
+```composer require "heidelpay/magento2-version2.3-patch"```
 
-```composer require "heidelpay/magento2:17.10.12"```
-
-### Enable the extension in Magento 2
+### Enable the extension in Magento 2.3
 
 ```php -f bin/magento module:enable Heidelpay_Gateway --clear-static-content```
 
@@ -60,5 +57,31 @@ All versions greater than 18.3.1 are based on the heidelpay php-payment-api. (ht
 ```php -f bin/magento setup:di:compile```
 
 ```php -f bin/magento setup:static-content:deploy```
+
+and you are ready to go.
+
+## Update to Magento 2.3
+> Prerequisite: The heidelpay/magento2 plugin was previously installed)
+
+### Require the new magento version in your composer.json
+```"magento/product-community-edition": "^2.3.0"```
+
+### Replace the heidelpay/magento2 module with this patched version
+```"heidelpay/magento2-version2.3-patch": "*"```
+
+### Perform the composer update
+```composer update```
+
+### Setup the extension and refresh cache
+```php -f bin/magento setup:upgrade```
+
+```php -f bin/magento cache:flush```
+
+```php -f bin/magento setup:di:compile```
+
+```php -f bin/magento setup:static-content:deploy```
+
+### If your run into trouble compiling
+Check this [Issue](https://github.com/magento/magento2/issues/15441).
 
 and you are ready to go.
