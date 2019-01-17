@@ -7,7 +7,33 @@
 # Heidelpay payment extension for Magento2
 
 This extension for Magento 2.3 provides a direct integration of the Heidelpay payment methods to your Magento 2.3 shop.
-> ATTENTION: Please note that this module will not be continued. This will allow for an Update to Magento 2.3, however it will not receive new Features.
+>Heidelpay is offering this magento2 plugin as a temporary solution in order to ensure Magento 2.3 compatibility.  
+>Please note that we will not provide long-term support for this version and strongly recommend waiting for the official release of the magento 2.3 module, based on our new backend technology stack.  
+>Release is planned for Q1/Q2 of 2019. The new plugin offers the following benefits:
+>*	Long term support
+>*	Magento 2.3 PWA Support
+>*	Continuous improvements
+>*	Up-to-date, innovative payment methods (e.g Apple Pay, Hire Purchase, Invoice guaranteed, flexi-pay)
+>*	Support for the new PayPal API, including their Fraud Toolings
+>*	Mobile SDK’s 
+>
+>For more information on our upcoming technology stack visit: https://docs.heidelpay.com
+
+For more information on this implementationplease visit [our dev-page](http://dev.heidelpay.com/magento2).
+
+## SYSTEM REQUIREMENTS
+
+This extension requires PHP 7.1 or PHP 7.2 as well as Magento 2.3.
+It also depends on the Heidelpay php-payment-api and the php-basket-api, which will be installed along with the plugin.  
+
+## LICENSE
+
+You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
+
+## Release notes
+
+*   Based on the [php-payment-api](https://github.com/heidelpay/php-payment-api). Please refer to the [developer documentation](https://dev.heidelpay.com/PhpPaymentApi/).
+*   Based on the [php-basket-api](https://github.com/heidelpay/php-basket-api). Please refer to the [developer documentation](https://dev.heidelpay.com/php-composer-bundle/php-basket-api/).
 
 Currently supported payment methods are:
 * Credit Card
@@ -21,22 +47,6 @@ Currently supported payment methods are:
 * Invoice (Secured) (B2C)
 * giropay
 * iDeal
-
-For more information please visit [our dev-page](http://dev.heidelpay.com/magento2).
-
-## SYSTEM REQUIREMENTS
-
-This extension requires PHP 7.1 or PHP 7.2 as well as Magento 2.3.
-It also depends on the Heidelpay php-payment-api and the php-basket-api, which will be installed along with the plugin.  
-
-## LICENSE
-
-You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
-
-## Release notes
-
-*   Bases on the [php-payment-api](https://github.com/heidelpay/php-payment-api). Please refer to the [developer documentation](https://dev.heidelpay.com/PhpPaymentApi/).
-*   Bases on the [php-basket-api](https://github.com/heidelpay/php-basket-api). Please refer to the [developer documentation](https://dev.heidelpay.com/php-composer-bundle/php-basket-api/).
 
 ## Installation
 
