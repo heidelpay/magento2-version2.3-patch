@@ -1,4 +1,4 @@
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2-version2.3-patch?style=flat-square)](https://packagist.org/packages/heidelpay/magento2)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2-version2.3-patch?style=flat-square)](https://packagist.org/packages/heidelpay/magento2-version2.3-patch)
 [![PHP 7.1](https://img.shields.io/badge/php-7.1-blue.svg)](http://www.php.net)
 [![PHP 7.2](https://img.shields.io/badge/php-7.2-blue.svg)](http://www.php.net)
 
