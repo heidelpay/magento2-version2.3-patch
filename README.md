@@ -1,4 +1,4 @@
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2-version2.3-patch?style=flat-square)](https://packagist.org/packages/heidelpay/magento2)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/heidelpay/magento2-version2.3-patch?style=flat-square)](https://packagist.org/packages/heidelpay/magento2-version2.3-patch)
 [![PHP 7.1](https://img.shields.io/badge/php-7.1-blue.svg)](http://www.php.net)
 [![PHP 7.2](https://img.shields.io/badge/php-7.2-blue.svg)](http://www.php.net)
 
@@ -6,7 +6,7 @@
 
 # Heidelpay payment extension for Magento2
 
-This extension for Magento 2.3 provides a direct integration of the Heidelpay payment methods to your Magento 2.3 shop.
+This extension for Magento 2.3 provides a direct integration of the supported payment methods mentioned below to your Magento 2.3 shop.
 >Heidelpay is offering this magento2 plugin as a temporary solution in order to ensure Magento 2.3 compatibility.  
 >Please note that we will not provide long-term support for this version and strongly recommend waiting for the official release of the magento 2.3 module, based on our new backend technology stack.  
 >Release is planned for Q1/Q2 of 2019. The new plugin offers the following benefits:
@@ -19,12 +19,12 @@ This extension for Magento 2.3 provides a direct integration of the Heidelpay pa
 >
 >For more information on our upcoming technology stack visit: https://docs.heidelpay.com
 
-For more information on this implementationplease visit [our dev-page](http://dev.heidelpay.com/magento2).
+For more information on this implementation please visit [our dev-page](http://dev.heidelpay.com/magento2).
 
 ## SYSTEM REQUIREMENTS
 
 This extension requires PHP 7.1 or PHP 7.2 as well as Magento 2.3.
-It also depends on the Heidelpay php-payment-api and the php-basket-api, which will be installed along with the plugin.  
+It also depends on the heidelpay php-payment-api and the php-basket-api, which will be installed along with the plugin.  
 
 ## LICENSE
 
@@ -91,7 +91,7 @@ and you are ready to go.
 
 ```php -f bin/magento setup:static-content:deploy```
 
-### If your run into trouble compiling
+### If you run into trouble compiling
 Check this [Issue](https://github.com/magento/magento2/issues/15441).
 
 and you are ready to go.
