@@ -7,7 +7,7 @@
 # Heidelpay payment extension for Magento2
 
 This extension for Magento 2.3 provides a direct integration of the supported payment methods mentioned below to your Magento 2.3 shop.
->Heidelpay is offering this magento2 plugin as a temporary solution in order to ensure Magento 2.3 compatibility.  
+>heidelpay is offering this magento2 plugin as a temporary solution in order to ensure Magento 2.3 compatibility.  
 >Please note that we will not provide long-term support for this version and strongly recommend waiting for the official release of the magento 2.3 module, based on our new backend technology stack.  
 >Release is planned for Q1/Q2 of 2019. The new plugin offers the following benefits:
 >*	Long term support
@@ -15,7 +15,7 @@ This extension for Magento 2.3 provides a direct integration of the supported pa
 >*	Continuous improvements
 >*	Up-to-date, innovative payment methods (e.g Apple Pay, Hire Purchase, Invoice guaranteed, flexi-pay)
 >*	Support for the new PayPal API, including their Fraud Toolings
->*	Mobile SDK’s 
+>*	Mobile SDK’s
 >
 >For more information on our upcoming technology stack visit: https://docs.heidelpay.com
 
