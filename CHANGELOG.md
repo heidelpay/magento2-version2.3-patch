@@ -4,7 +4,9 @@
 
 This project does not follow a versioning standard. Versions are crafted after the dates; for example, the version 17.7.25 was released on July, 25th in 2017
 
-## 19.1.15
+## [19.1.22][19.1.22]
 
 ### Change
 *   Patched [heidelpay/magento2](https://github.com/heidelpay/magento2) module to allow updating to magento 2.3.
+
+[19.1.22]: https://github.com/heidelpay/magento2-version2.3-patch/tree/19.1.22
