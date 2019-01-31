@@ -20,3 +20,4 @@ This project does not follow a versioning standard. Versions are crafted after t
 *   Patched [heidelpay/magento2](https://github.com/heidelpay/magento2) module to allow updating to magento 2.3.
 
 [19.1.22]: https://github.com/heidelpay/magento2-version2.3-patch/tree/19.1.22
+[19.2.4]: https://github.com/heidelpay/magento2-version2.3-patch/compare/19.1.22..19.2.4
