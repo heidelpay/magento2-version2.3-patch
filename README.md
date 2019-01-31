@@ -95,3 +95,18 @@ and you are ready to go.
 Check this [Issue](https://github.com/magento/magento2/issues/15441).
 
 and you are ready to go.
+
+## Support
+For any issues or questions please get in touch with our support.
+
+#### Web page
+https://dev.heidelpay.com/
+ 
+#### Email
+support@heidelpay.com
+ 
+#### Phone
++49 (0)6221/6471-100
+
+#### Twitter
+@devHeidelpay
