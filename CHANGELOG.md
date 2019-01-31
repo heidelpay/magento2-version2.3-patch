@@ -4,6 +4,16 @@
 
 This project does not follow a versioning standard. Versions are crafted after the dates; for example, the version 17.7.25 was released on July, 25th in 2017
 
+## [19.2.4][19.2.4]
+
+### Fixed
+
+### Fixed
+- Fixed a bug which resulted in an problem when sending the new order mail which resulted in the customer being redirected to an empty cart instead of the success page.
+
+### Added
+- Support information to readme.
+
 ## [19.1.22][19.1.22]
 
 ### Change
