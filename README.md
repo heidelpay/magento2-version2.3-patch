@@ -9,7 +9,7 @@
 This extension for Magento 2.3 provides a direct integration of the supported payment methods mentioned below to your Magento 2.3 shop.
 >heidelpay is offering this magento2 plugin as a temporary solution in order to ensure Magento 2.3 compatibility.  
 >Please note that we will not provide long-term support for this version and strongly recommend waiting for the official release of the magento 2.3 module, based on our new backend technology stack.  
->Release is planned for Q1/Q2 of 2019. The new plugin offers the following benefits:
+>Release is planned for Q3/Q4 of 2019. The new plugin offers the following benefits:
 >*	Long term support
 >*	Magento 2.3 PWA Support
 >*	Continuous improvements
