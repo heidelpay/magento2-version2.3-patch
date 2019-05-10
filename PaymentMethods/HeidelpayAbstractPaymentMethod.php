@@ -402,7 +402,7 @@ class HeidelpayAbstractPaymentMethod extends AbstractMethod
         $collection = $this->transactionCollectionFactory->create();
 
         /** @var \Heidelpay\Gateway\Model\Transaction $transactionInfo */
-        $transactionInfo = $collection->loadByTransactionId($payment->getLastTransId());
+        $transactionInfo = $collection->loadByTransactionId($payment->getParentTransactionId());
 
         // if there is no heidelpay transaction, something went wrong.
         if ($transactionInfo === null || $transactionInfo->isEmpty()) {
