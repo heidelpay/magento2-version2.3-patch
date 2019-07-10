@@ -16,6 +16,14 @@ This project does not follow a versioning standard. Versions are crafted after t
 log entry was changed for a better understanding.
 - Removed static version from composer command in installation manual.  
 
+## [19.2.4][19.2.4]
+
+### Fixed
+- Fixed a bug which resulted in an problem when sending the new order mail which resulted in the customer being redirected to an empty cart instead of the success page.
+
+### Added
+- Support information to readme.
+
 ## [19.1.22][19.1.22]
 
 ### Change
