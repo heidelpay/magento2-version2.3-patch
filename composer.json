@@ -2,7 +2,7 @@
   "name": "heidelpay/magento2-version2.3-patch",
   "description": "This extension for Magento 2 provides a direct integration of the Heidelpay payment methods to your Magento 2.3 shop. Please be aware this module will not be continued and is meant for urgent updates to Magento 2.3 only.",
   "require": {
-    "php": "~7.1.0|~7.2.0",
+    "php": "~7.1.0|~7.2.0|~7.3.0",
     "magento/framework": "^102.0.0",
     "magento/module-config": "*",
     "magento/module-store": "*",
